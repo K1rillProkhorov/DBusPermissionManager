@@ -12,7 +12,7 @@
 class PermissionService : public QObject, public QDBusContext
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "com.system.permissions")
+    Q_CLASSINFO("D-Bus Interface", SERVICE_NAME)
 
 public:
     explicit PermissionService(std::unique_ptr<DataBase> db,

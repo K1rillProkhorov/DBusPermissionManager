@@ -1,8 +1,6 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
-#include <string>
-
 constexpr auto SERVICE_NAME = "com.system.permissions";
 constexpr auto DATABASE_NAME = "permission.db";
 
