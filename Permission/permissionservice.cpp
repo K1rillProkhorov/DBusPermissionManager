@@ -34,13 +34,11 @@ void PermissionService::RequestPermission(const int &permissionEnumCode) const
 bool PermissionService::CheckApplicationHasPermission(const QString &applicationExecPath,
                                                       const int &permissionenumCode) const
 {
-    const auto status = m_oDB->CheckPermission(applicationExecPath, permissionenumCode);
-
-    if (status == eStatus::Error)
+    if (!m_oDB->CheckPermission(applicationExecPath, permissionenumCode))
     {
         sendErrorReply(QDBusError::Failed, "Failure permission validating");
         return false;
     }
 
-    return status == eStatus::Success;
+    return true;
 }

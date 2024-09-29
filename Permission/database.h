@@ -16,7 +16,7 @@ public:
     DataBase& operator=(DataBase&& other) noexcept;
 
     bool AddPermission(const QString& path, const int& permission);
-    eStatus CheckPermission(const QString& path, const int& permission);
+    bool CheckPermission(const QString& path, const int& permission);
 
 private:
     QSqlDatabase m_oDB;

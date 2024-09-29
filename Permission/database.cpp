@@ -56,21 +56,21 @@ bool DataBase::AddPermission(const QString &path, const int &permission)
     return true;
 }
 
-eStatus DataBase::CheckPermission(const QString& path, const int& permission)
+bool DataBase::CheckPermission(const QString& path, const int& permission)
 {
-    eStatus status = eStatus::Success;
     QSqlQuery query;
     if (!query.exec("SELECT * FROM Permissions WHERE Path = '" +
                     path + "' AND Permission = " + QString::number(permission)))
     {
         qDebug() << "Unable to validate permission: " << query.lastError().text();
-        status = eStatus::Error;
-    }
-    else if (!query.next())
-    {
-        qDebug("No Permission");
-        status = eStatus::Failure;
+        return false;
     }
 
-    return status;
+    if (!query.next())
+    {
+        qDebug("No Permission");
+        return false;
+    }
+
+    return true;
 }
