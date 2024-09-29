@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     auto database = std::make_unique<DataBase>(DATABASE_NAME);
     PermissionService permissionService(std::move(database));
 
-    if (!QDBusConnection::sessionBus().registerService(SERVICE_NAME))
+    if (!QDBusConnection::sessionBus().registerService(PERMISSION_SERVICE_NAME))
         qDebug() << "Unable to register service: " << QDBusConnection::sessionBus().lastError().message();
 
     if (!QDBusConnection::sessionBus().registerObject("/", &permissionService, QDBusConnection::ExportAllSlots))
