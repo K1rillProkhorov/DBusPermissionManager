@@ -1,9 +1,9 @@
 #ifndef DEFINITIONS_H
 #define DEFINITIONS_H
 
-constexpr auto PERMISSION_SERVICE_NAME = "com.system.permissions";
-constexpr auto TIME_SERVICE_NAME = "com.system.time";
-constexpr auto DATABASE_NAME = "permission.db";
+#define PERMISSION_SERVICE_NAME "com.system.permissions"
+#define TIME_SERVICE_NAME "com.system.time"
+#define DATABASE_NAME "permission.db"
 
 enum eStatus
 {
