@@ -6,10 +6,10 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    auto database = std::make_unique<DataBase>("permission.db");
+    auto database = std::make_unique<DataBase>(DATABASE_NAME);
     PermissionService permissionService(std::move(database));
 
-    if (!QDBusConnection::sessionBus().registerService("com.system.permissions"))
+    if (!QDBusConnection::sessionBus().registerService(SERVICE_NAME))
         qDebug() << "Unable to register service: " << QDBusConnection::sessionBus().lastError().message();
 
     if (!QDBusConnection::sessionBus().registerObject("/", &permissionService, QDBusConnection::ExportAllSlots))

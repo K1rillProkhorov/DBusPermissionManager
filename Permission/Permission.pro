@@ -21,4 +21,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     database.h \
-    permissionservice.h
+    permissionservice.h \
+    ../definitions.h

@@ -1,16 +1,9 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include "../definitions.h"
+
 #include <QtSql>
-
-enum eStatus
-{
-    Error = -1,
-    Failure = 0,
-    Success = 1
-};
-
-enum ePermissions { SystemTime = 0 };
 
 class DataBase
 {
