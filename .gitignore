@@ -1,0 +1,6 @@
+
+/Permission/build
+/Time/build
+/Application/build
+.o
+moc_*
