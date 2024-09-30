@@ -36,8 +36,7 @@ apt-get install qt5-qmake qtdeclarative5-dev
 - `bool CheckApplicationHasPermission(applicationExecPath: String, permissionEnumCode: int)` - возвращает *true* в случае наличия разрешения у приложения и *false* - в случае отсутствия, в случае ошибки - возвращает ошибку.\
   **Пример использования:**
   ```
-  gdbus send -e -d com.system.permissions -o / -m com.system.permissions.CheckApplicationHasPermission
-  /usr/bin/com.example.example 0
+  gdbus call -e -d com.system.permissions -o / -m com.system.permissions.CheckApplicationHasPermission /usr/bin/com.example.example 0
   ```
 ## Использование TimeService
 Переходим в папку *build* запускаем файл и *Time*, предварительно должен быть запущен `PermissionService`.\
@@ -45,7 +44,7 @@ apt-get install qt5-qmake qtdeclarative5-dev
 - `uint64 GetSystemTime()` - возвращает текущее системное время в милисекундах в случае наличия разрешения на просмотр системного времени (`permissionEnumCode = 0`) у вызвавшего приложения, в случае отсутствия прав - возвращает ошибку `Access denied` и сообщение `Unauthorized Access`, в случае ошибку - возвращает ошибку.\
   **Пример использования**
   ```
-  gdbus send -e -d com.system.time -o / -m com.system.time.GetSystemTime
+  gdbus call -e -d com.system.time -o / -m com.system.time.GetSystemTime
   ```
 ## Использование Application
 Переходим в папку *build* запускае файл *Application*, предварительно должны быть запущены `PermissionService` и `TimeService`.
