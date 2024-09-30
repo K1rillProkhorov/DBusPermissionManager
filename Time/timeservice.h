@@ -3,20 +3,19 @@
 
 #include "../definitions.h"
 
-#include <QObject>
 #include <QDBusConnectionInterface>
 #include <QDBusContext>
+#include <QObject>
 
-class TimeService : public QObject, public QDBusContext
-{
-    Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", TIME_SERVICE_NAME)
+class TimeService : public QObject, public QDBusContext {
+  Q_OBJECT
+  Q_CLASSINFO("D-Bus Interface", TIME_SERVICE_NAME)
 
 public:
-    explicit TimeService(QObject *parent = nullptr);
+  explicit TimeService(QObject *parent = nullptr);
 
 public slots:
-    Q_SCRIPTABLE quint64 GetSystemTime() const;
+  Q_SCRIPTABLE quint64 GetSystemTime() const;
 };
 
 #endif // TIMESERVICE_H

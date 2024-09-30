@@ -3,28 +3,28 @@
 
 #include "database.h"
 
-#include <QObject>
 #include <QDBusConnectionInterface>
 #include <QDBusContext>
 #include <QFile>
+#include <QObject>
 #include <memory>
 
-class PermissionService : public QObject, public QDBusContext
-{
-    Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", PERMISSION_SERVICE_NAME)
+class PermissionService : public QObject, public QDBusContext {
+  Q_OBJECT
+  Q_CLASSINFO("D-Bus Interface", PERMISSION_SERVICE_NAME)
 
 public:
-    explicit PermissionService(std::unique_ptr<DataBase> db,
-                               QObject *parent = nullptr);
+  explicit PermissionService(std::unique_ptr<DataBase> db,
+                             QObject *parent = nullptr);
 
 public slots:
-    Q_SCRIPTABLE void RequestPermission(const int& permissionEnumCode);
-    Q_SCRIPTABLE bool CheckApplicationHasPermission(const QString& applicationExecPath,
-                                                    const int& permissionenumCode);
+  Q_SCRIPTABLE void RequestPermission(const int &permissionEnumCode);
+  Q_SCRIPTABLE bool
+  CheckApplicationHasPermission(const QString &applicationExecPath,
+                                const int &permissionenumCode);
 
 private:
-    std::unique_ptr<DataBase> m_oDB;
+  std::unique_ptr<DataBase> m_oDB;
 };
 
 #endif // PERMISSIONSERVICE_H
