@@ -1,0 +1,17 @@
+cd ./Permission
+rm ./moc_*
+qmake Permission.pro
+make
+cd ..
+
+cd ./Time
+rm ./moc_*
+qmake Time.pro
+make
+cd ..
+
+cd ./Application
+rm ./moc_*
+qmake Application.pro
+make
+cd ..
