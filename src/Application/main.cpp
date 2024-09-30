@@ -41,7 +41,7 @@ int main() {
     qWarning() << "Unable to get system time";
     return -1;
   } else
-    qDebug() << "Date: " << dateTime.toString("dd-MM-yyyy HH:mm:ss");
+    qDebug() << "Date: " << dateTime.toString("yyyy-MM-dd HH:mm:ss");
 
   return 0;
 }

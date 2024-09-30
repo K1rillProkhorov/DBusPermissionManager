@@ -4,7 +4,7 @@ QT += dbus
 
 CONFIG += c++17 cmdline
 
-DESTDIR = build
+DESTDIR = ../../build
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
