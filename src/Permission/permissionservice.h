@@ -11,8 +11,7 @@ class PermissionService : public QObject, public QDBusContext {
   Q_CLASSINFO("D-Bus Interface", PERMISSION_SERVICE_NAME)
 
 public:
-  explicit PermissionService(DataBase&& db,
-                             QObject *parent = nullptr);
+  explicit PermissionService(QObject *parent = nullptr);
 
 public slots:
   Q_SCRIPTABLE void RequestPermission(const int &permissionEnumCode);

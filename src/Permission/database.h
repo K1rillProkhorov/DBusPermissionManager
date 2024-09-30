@@ -10,9 +10,7 @@ public:
   explicit DataBase(const QString &dbName);
   virtual ~DataBase() noexcept;
   DataBase(const DataBase &other) = default;
-  DataBase(DataBase &&other) noexcept;
   DataBase &operator=(const DataBase &other) = default;
-  DataBase &operator=(DataBase &&other) noexcept;
 
   bool AddPermission(const QString &path, const int &permission);
   eStatus CheckPermission(const QString &path, const int &permission);

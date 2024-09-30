@@ -1,7 +1,7 @@
 #include "timeservice.h"
 
-#include <QDBusConnectionInterface>
 #include <QCoreApplication>
+#include <QDBusConnectionInterface>
 #include <QDebug>
 
 int main(int argc, char *argv[]) {
@@ -11,12 +11,12 @@ int main(int argc, char *argv[]) {
 
   if (!QDBusConnection::sessionBus().registerService(TIME_SERVICE_NAME))
     qWarning() << "Unable to register service: "
-             << QDBusConnection::sessionBus().lastError().message();
+               << QDBusConnection::sessionBus().lastError().message();
 
   if (!QDBusConnection::sessionBus().registerObject(
           "/", &timeService, QDBusConnection::ExportAllSlots))
     qWarning() << "Unable to register object: "
-             << QDBusConnection::sessionBus().lastError().message();
+               << QDBusConnection::sessionBus().lastError().message();
 
   qDebug() << "Service running...";
 

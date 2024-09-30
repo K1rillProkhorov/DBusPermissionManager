@@ -1,12 +1,11 @@
 #include "permissionservice.h"
 
 #include <QDBusConnectionInterface>
-#include <QFile>
 #include <QDebug>
+#include <QFile>
 
-PermissionService::PermissionService(DataBase&& db,
-                                     QObject *parent)
-    : QObject(parent), m_oDB(std::move(db)) {}
+PermissionService::PermissionService(QObject *parent)
+    : QObject(parent), m_oDB(DataBase(DATABASE_NAME)) {}
 
 void PermissionService::RequestPermission(const int &permissionEnumCode) {
   const auto client = message().service();

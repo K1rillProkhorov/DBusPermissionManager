@@ -24,17 +24,6 @@ DataBase::~DataBase() noexcept {
     m_oDB.close();
 }
 
-DataBase::DataBase(DataBase &&other) noexcept { *this = std::move(other); }
-
-DataBase &DataBase::operator=(DataBase &&other) noexcept {
-  if (&other == this)
-    return *this;
-
-  m_oDB = other.m_oDB;
-
-  return *this;
-}
-
 bool DataBase::AddPermission(const QString &path, const int &permission) {
   QSqlQuery query;
   if (!query.exec("INSERT INTO permissions (Path, Permission) VALUES('" + path +
