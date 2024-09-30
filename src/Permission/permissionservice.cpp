@@ -1,5 +1,7 @@
 #include "permissionservice.h"
 
+#include <QDBusConnectionInterface>
+#include <QFile>
 #include <QDebug>
 
 PermissionService::PermissionService(DataBase&& db,
@@ -13,7 +15,7 @@ void PermissionService::RequestPermission(const int &permissionEnumCode) {
   if (PID == 0)
     sendErrorReply(QDBusError::UnknownObject, "Unable to get PID");
 
-  QString applicationExecPath = QString("/proc/%1/exe").arg(PID);
+  auto applicationExecPath = QString("/proc/%1/exe").arg(PID);
   applicationExecPath = QFile::symLinkTarget(applicationExecPath);
 
   if (applicationExecPath.isEmpty())
@@ -27,7 +29,7 @@ void PermissionService::RequestPermission(const int &permissionEnumCode) {
 
 bool PermissionService::CheckApplicationHasPermission(
     const QString &applicationExecPath, const int &permissionenumCode) {
-  eStatus status =
+  const auto status =
       m_oDB.CheckPermission(applicationExecPath, permissionenumCode);
   if (status == eStatus::Error)
     sendErrorReply(QDBusError::Failed, "Failure permission validating");

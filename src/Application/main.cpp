@@ -20,7 +20,7 @@ int main() {
   const auto reply1 = timeService.call("GetSystemTime");
   if (reply1.type() == QDBusMessage::ErrorMessage) {
     if (timeService.lastError().type() == QDBusError::AccessDenied)
-      qDebug() << "Access denied, request permission";
+      qDebug() << "Access denied, request permission...";
 
     const auto reply2 =
         permissionService.call("RequestPermission", ePermissions::SystemTime);
@@ -31,7 +31,7 @@ int main() {
       dateTime =
           QDateTime::fromMSecsSinceEpoch(resultList.first().toULongLong());
     } else
-      qDebug() << "Failed to request permission";
+      qWarning() << "Failed to request permission";
   } else {
     QList<QVariant> resultList = reply1.arguments();
     dateTime = QDateTime::fromMSecsSinceEpoch(resultList.first().toULongLong());

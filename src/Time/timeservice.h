@@ -3,7 +3,6 @@
 
 #include "../definitions.h"
 
-#include <QDBusConnectionInterface>
 #include <QDBusContext>
 #include <QObject>
 

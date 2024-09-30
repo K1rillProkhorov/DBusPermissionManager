@@ -3,11 +3,8 @@
 
 #include "database.h"
 
-#include <QDBusConnectionInterface>
 #include <QDBusContext>
-#include <QFile>
 #include <QObject>
-#include <memory>
 
 class PermissionService : public QObject, public QDBusContext {
   Q_OBJECT

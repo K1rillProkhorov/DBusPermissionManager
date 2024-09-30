@@ -14,9 +14,9 @@ DataBase::DataBase(const QString &dbName)
     QSqlQuery query;
     if (!query.exec("CREATE TABLE IF NOT EXISTS permissions (Path TEXT, "
                     "Permission INTEGER, PRIMARY KEY(Path, Permission))"))
-      qDebug() << "Unable to create table: " << query.lastError().text();
+      qWarning() << "Unable to create table: " << query.lastError().text();
   } else
-    qDebug() << "Unable to open database: " << m_oDB.lastError().text();
+    qWarning() << "Unable to open database: " << m_oDB.lastError().text();
 }
 
 DataBase::~DataBase() noexcept {
@@ -39,7 +39,7 @@ bool DataBase::AddPermission(const QString &path, const int &permission) {
   QSqlQuery query;
   if (!query.exec("INSERT INTO permissions (Path, Permission) VALUES('" + path +
                   "', " + QString::number(permission) + ")")) {
-    qDebug() << "Unable to save permission: " << query.lastError().text();
+    qWarning() << "Unable to save permission: " << query.lastError().text();
     return false;
   }
 
@@ -50,7 +50,7 @@ eStatus DataBase::CheckPermission(const QString &path, const int &permission) {
   QSqlQuery query;
   if (!query.exec("SELECT * FROM Permissions WHERE Path = '" + path +
                   "' AND Permission = " + QString::number(permission))) {
-    qDebug() << "Unable to validate permission: " << query.lastError().text();
+    qWarning() << "Unable to validate permission: " << query.lastError().text();
     return eStatus::Error;
   }
 

@@ -1,7 +1,7 @@
 #include "timeservice.h"
 #include "../interfaces.h"
 
-#include <QDBusAbstractInterface>
+#include <QDBusConnectionInterface>
 #include <QDateTime>
 #include <QFile>
 #include <QList>
@@ -17,7 +17,7 @@ quint64 TimeService::GetSystemTime() const {
   if (PID == 0)
     sendErrorReply(QDBusError::UnknownObject, "Unable to get PID");
 
-  QString applicationExecPath = QString("/proc/%1/exe").arg(PID);
+  auto applicationExecPath = QString("/proc/%1/exe").arg(PID);
   applicationExecPath = QFile::symLinkTarget(applicationExecPath);
 
   PermissionServiceInterface permissionService;
@@ -28,7 +28,7 @@ quint64 TimeService::GetSystemTime() const {
   if (result.type() == QDBusMessage::ErrorMessage)
     sendErrorReply(QDBusError::Failed, result.errorMessage());
 
-  QList<QVariant> args = result.arguments();
+  auto args = result.arguments();
   bool status = args.isEmpty() ? false : args.first().toBool();
   if (!status)
     sendErrorReply(QDBusError::AccessDenied, "Unauthorized access");
