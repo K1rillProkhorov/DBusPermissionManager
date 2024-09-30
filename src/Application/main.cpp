@@ -2,6 +2,8 @@
 
 #include <QDateTime>
 #include <QDebug>
+#include <QList>
+#include <QVariant>
 
 int main() {
   TimeServiceInterface timeService;

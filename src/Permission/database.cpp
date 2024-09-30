@@ -1,8 +1,8 @@
 #include "database.h"
 #include <QDebug>
 #include <QSqlQuery>
+#include <QSqlError>
 #include <QString>
-#include <type_traits>
 
 DataBase::DataBase(const QString &dbName)
     : m_oDB(QSqlDatabase::addDatabase("QSQLITE")) {

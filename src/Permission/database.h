@@ -3,7 +3,7 @@
 
 #include "../definitions.h"
 
-#include <QtSql>
+#include <QSqlDatabase>
 
 class DataBase {
 public:
