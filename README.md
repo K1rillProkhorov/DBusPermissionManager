@@ -19,10 +19,10 @@ apt-get install qt5-qmake qtdeclarative5-dev
     qmake ProjectName.pro
     make
     ```
-2. *Сборка при помощи `build` файла*.
+2. *Сборка при помощи `build_file` файла*.
    ```
-   chmod +x ./build
-   ./build
+   chmod +x ./build_file
+   ./build_file
    ```
 В результате сборки создастся папка *build* в которой будут находится 3 исполняемых файла.
 ## Использование PermissionService

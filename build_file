@@ -1,17 +1,17 @@
 cd ./src/Permission
-rm ./moc_*
+rm -f ./moc_*
 qmake Permission.pro
 make
-cd ..
+cd ../..
 
 cd ./src/Time
-rm ./moc_*
+rm -f ./moc_*
 qmake Time.pro
 make
-cd ..
+cd ../..
 
 cd ./src/Application
-rm ./moc_*
+rm -f ./moc_*
 qmake Application.pro
 make
-cd ..
+cd ../..
