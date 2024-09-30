@@ -5,7 +5,7 @@
 int main(int argc, char *argv[]) {
   QCoreApplication a(argc, argv);
 
-  auto database = std::make_unique<DataBase>(DATABASE_NAME);
+  DataBase database(DATABASE_NAME);
   PermissionService permissionService(std::move(database));
 
   if (!QDBusConnection::sessionBus().registerService(PERMISSION_SERVICE_NAME))

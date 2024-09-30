@@ -31,7 +31,6 @@ DataBase &DataBase::operator=(DataBase &&other) noexcept {
     return *this;
 
   m_oDB = other.m_oDB;
-  other.m_oDB.close();
 
   return *this;
 }

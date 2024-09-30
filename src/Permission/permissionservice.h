@@ -14,7 +14,7 @@ class PermissionService : public QObject, public QDBusContext {
   Q_CLASSINFO("D-Bus Interface", PERMISSION_SERVICE_NAME)
 
 public:
-  explicit PermissionService(std::unique_ptr<DataBase> db,
+  explicit PermissionService(DataBase&& db,
                              QObject *parent = nullptr);
 
 public slots:
@@ -24,7 +24,7 @@ public slots:
                                 const int &permissionenumCode);
 
 private:
-  std::unique_ptr<DataBase> m_oDB;
+  DataBase m_oDB;
 };
 
 #endif // PERMISSIONSERVICE_H

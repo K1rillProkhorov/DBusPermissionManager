@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-PermissionService::PermissionService(std::unique_ptr<DataBase> db,
+PermissionService::PermissionService(DataBase&& db,
                                      QObject *parent)
     : QObject(parent), m_oDB(std::move(db)) {}
 
@@ -18,7 +18,7 @@ void PermissionService::RequestPermission(const int &permissionEnumCode) {
 
   if (applicationExecPath.isEmpty())
     sendErrorReply(QDBusError::UnknownObject, "Unable to get executable path");
-  else if (!m_oDB->AddPermission(applicationExecPath, permissionEnumCode))
+  else if (!m_oDB.AddPermission(applicationExecPath, permissionEnumCode))
     sendErrorReply(QDBusError::Failed, "Unable to add permission in database");
   else
     qDebug() << "Request permission: " << QString::number(permissionEnumCode)
@@ -28,7 +28,7 @@ void PermissionService::RequestPermission(const int &permissionEnumCode) {
 bool PermissionService::CheckApplicationHasPermission(
     const QString &applicationExecPath, const int &permissionenumCode) {
   eStatus status =
-      m_oDB->CheckPermission(applicationExecPath, permissionenumCode);
+      m_oDB.CheckPermission(applicationExecPath, permissionenumCode);
   if (status == eStatus::Error)
     sendErrorReply(QDBusError::Failed, "Failure permission validating");
 
