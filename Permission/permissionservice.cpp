@@ -8,16 +8,13 @@ PermissionService::PermissionService(std::unique_ptr<DataBase> db, QObject *pare
 
 }
 
-void PermissionService::RequestPermission(const int &permissionEnumCode) const
+void PermissionService::RequestPermission(const int &permissionEnumCode)
 {
     const auto client = message().service();
     const auto* interface = QDBusConnection::sessionBus().interface();
     const size_t PID = interface->servicePid(client);
     if (PID == 0)
-    {
         sendErrorReply(QDBusError::UnknownObject, "Unable to get PID");
-        return;
-    }
 
     QString applicationExecPath = QString("/proc/%1/exe").arg(PID);
     applicationExecPath = QFile::symLinkTarget(applicationExecPath);
@@ -32,13 +29,11 @@ void PermissionService::RequestPermission(const int &permissionEnumCode) const
 }
 
 bool PermissionService::CheckApplicationHasPermission(const QString &applicationExecPath,
-                                                      const int &permissionenumCode) const
+                                                      const int &permissionenumCode)
 {
-    if (!m_oDB->CheckPermission(applicationExecPath, permissionenumCode))
-    {
+    eStatus status = m_oDB->CheckPermission(applicationExecPath, permissionenumCode);
+    if (status == eStatus::Error)
         sendErrorReply(QDBusError::Failed, "Failure permission validating");
-        return false;
-    }
 
-    return true;
+    return status == eStatus::Success;
 }

@@ -7,4 +7,11 @@
 
 enum ePermissions { SystemTime = 0 };
 
+enum eStatus
+{
+    Error,
+    Failure,
+    Success
+};
+
 #endif //DEFINITIONS_H

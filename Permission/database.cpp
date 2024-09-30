@@ -27,9 +27,9 @@ DataBase::~DataBase() noexcept
     if (m_oDB.isOpen()) m_oDB.close();
 }
 
-DataBase::DataBase(const DataBase &&other) noexcept
+DataBase::DataBase(DataBase &&other) noexcept
 {
-    *this = other;
+    *this = std::move(other);
 }
 
 DataBase& DataBase::operator=(DataBase&& other) noexcept
@@ -37,7 +37,7 @@ DataBase& DataBase::operator=(DataBase&& other) noexcept
     if (&other == this)
         return *this;
 
-    m_oDB = std::move(other.m_oDB);
+    m_oDB = other.m_oDB;
     other.m_oDB.close();
 
     return *this;
@@ -56,21 +56,21 @@ bool DataBase::AddPermission(const QString &path, const int &permission)
     return true;
 }
 
-bool DataBase::CheckPermission(const QString& path, const int& permission)
+eStatus DataBase::CheckPermission(const QString& path, const int& permission)
 {
     QSqlQuery query;
     if (!query.exec("SELECT * FROM Permissions WHERE Path = '" +
                     path + "' AND Permission = " + QString::number(permission)))
     {
         qDebug() << "Unable to validate permission: " << query.lastError().text();
-        return false;
+        return eStatus::Error;
     }
 
     if (!query.next())
     {
         qDebug("No Permission");
-        return false;
+        return eStatus::Failure;
     }
 
-    return true;
+    return eStatus::Success;
 }

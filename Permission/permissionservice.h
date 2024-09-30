@@ -19,9 +19,9 @@ public:
                                QObject *parent = nullptr);
 
 public slots:
-    Q_SCRIPTABLE void RequestPermission(const int& permissionEnumCode) const;
+    Q_SCRIPTABLE void RequestPermission(const int& permissionEnumCode);
     Q_SCRIPTABLE bool CheckApplicationHasPermission(const QString& applicationExecPath,
-                                                    const int& permissionenumCode) const;
+                                                    const int& permissionenumCode);
 
 private:
     std::unique_ptr<DataBase> m_oDB;
