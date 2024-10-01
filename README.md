@@ -10,7 +10,7 @@
 Для сборки используется `qmake`.\
 Перед сборкой нужно установить `qt5-qmake` и `qtdeclarative5-dev`.
 ```
-apt-get install qt5-qmake qtdeclarative5-dev
+sudo apt install qt5-qmake qtdeclarative5-dev
 ```
 **Два варианта сборки:**
 1. *Сборка в ручную каждого `.pro` файла*.
